@@ -1,14 +1,14 @@
-import java.util.*;
 import java.math.BigInteger;
-
-
-import static java.lang.Math.pow;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class RsaImplementation {
     BigInteger p;
     BigInteger q;
     BigInteger n, phi, d, e;
-    private int  bitlength = 1024;
+    private int bitlength = 1024;
 
     public boolean isPrime(int num) {
         boolean flag = false;
@@ -38,8 +38,7 @@ public class RsaImplementation {
         // compute the totient, phi
         this.phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
         e = BigInteger.probablePrime(bitlength / 2, r);
-        while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0)
-        {
+        while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0) {
             e.add(BigInteger.ONE);
         }
         d = e.modInverse(phi);
@@ -96,7 +95,7 @@ public class RsaImplementation {
     public static String getLettersFromNumbers(long numberRepresentation) {
         String message = "";
         while (numberRepresentation > 0) {
-            message = message + (char) (numberRepresentation % 100 + 65) ;
+            message = message + (char) (numberRepresentation % 100 + 65);
             numberRepresentation = numberRepresentation / 100;
         }
         return new StringBuilder(message).reverse().toString().toLowerCase();
